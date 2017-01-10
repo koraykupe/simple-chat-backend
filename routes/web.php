@@ -11,19 +11,27 @@
 |
 */
 
+use Illuminate\Http\Request;
+
 // Add chat message
-$app->put('/message', function () {
-    // return \Chat\Message::add();
+$app->post('user/messages', function (Request $request) {
+
+    $this->validate($request, [
+        'message' => 'required|string',
+        'userId' => 'required|integer|exists:users,id',
+    ]);
+
+    $message = new \Chat\Message();
+    return $message->add(new \Chat\OutputFormats\JsonOutputFormat(), $request->input('userId'), $request->input('message'));
 });
 
-// Get a chat message
-$app->get('/message/{userId}', function ($userId) {
+// Get chat messages for a user
+$app->get('user/messages', function (Request $request) {
+
+    $this->validate($request, [
+        'userId' => 'required|integer|exists:users,id',
+    ]);
+
     $chat = new \Chat\Message();
-    return $chat->get(new \Chat\JsonMessageOutput(), $userId);
+    return $chat->get(new \Chat\OutputFormats\JsonOutputFormat(), $request->input('userId'));
 });
-
-/*
- * @todo Get all chat messages
- * @todo Update a message
- * @todo Delete a message
- */

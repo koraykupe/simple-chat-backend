@@ -8,14 +8,26 @@
 
 namespace Chat;
 
+use Chat\Contracts\IOutputFormat;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class Message
 {
-    public function get(IMessageOutput $output, $userId)
+    public function add(IOutputFormat $output, $userId, $message)
     {
-        $message = DB::select("SELECT * FROM messages");
-        // $message = json_encode([$userId]);
+        $messageId = DB::table("messages")->insertGetId(['user_id' => $userId, 'message' => $message]);
+
+        $text = [];
+        $text['success_msg'] = 'Message added successfully.';
+        $text['message_id'] = $messageId;
+
+        return json_encode($text, JSON_PRETTY_PRINT);
+    }
+
+    public function get(IOutputFormat $output, $userId)
+    {
+        $message = DB::table("messages")->where("user_id", $userId)->orderBy("id", "DESC")->get();
         return $output->view($message);
     }
 }

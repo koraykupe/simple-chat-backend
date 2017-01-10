@@ -6,12 +6,12 @@
  * Time: 14:11
  */
 
-namespace Chat;
+namespace Chat\OutputFormats;
 
-class JsonMessageOutput implements IMessageOutput
+use Chat\Contracts\IOutputFormat;
+
+class JsonOutputFormat implements IOutputFormat
 {
-    public $userId;
-
     public function __construct()
     {
     }
