@@ -76,6 +76,8 @@
 - Exceptions and error codes
 - Update a message
 - Delete a message
+- Add database seeds
+- Mocking for tests 
 - Improve the routing file
 - Add more output types (HTML, XML, etc)
 - Authentication
