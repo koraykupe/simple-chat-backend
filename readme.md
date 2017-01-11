@@ -12,6 +12,28 @@
 - Routing codes are in routes/web.php file.
 - There are some unit tests on tests/MessageTest.php file
 
+#Folder Structure
+
+├───app<br />
+│   ├───Chat<br />
+│   │   └───Controllers<br />
+│   │       └───MessageController<br />
+│   │   └───Models<br />
+│   │       └───Message<br />
+│   │       └───User<br />
+│   │   └───Repositories<br />
+│   │       └───Contracts<br />
+│   │           └───IMessageRepository<br />
+│   │       └───EloquentMessageRepository<br />
+│   │   └───Views<br />
+│   │       └───Contracts<br />
+│   │           └───IOutputFormat<br />
+│   │       └───JsonOutputFormat<br />
+├───database<br />
+│   ├───migrations<br />
+├───routes<br />
+├───tests<br />
+
 #Usage
 
 **Get unread messages of a user:**
@@ -54,5 +76,6 @@
 - Exceptions and error codes
 - Update a message
 - Delete a message
+- Improve the routing file
 - Add more output types (HTML, XML, etc)
 - Authentication
