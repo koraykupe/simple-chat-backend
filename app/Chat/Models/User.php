@@ -4,6 +4,10 @@ namespace Chat\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class User
+ * @package Chat\Models
+ */
 class User extends Model
 {
     /**
@@ -15,8 +19,11 @@ class User extends Model
         'name'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function message()
     {
-        return $this->hasMany('Chat\Message');
+        return $this->hasMany('Chat\Models\Message');
     }
 }

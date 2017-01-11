@@ -8,34 +8,56 @@
 
 namespace Chat\Controllers;
 
-use Chat\Contracts\IOutputFormat;
-use Chat\Models\Message;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\DB;
+use Chat\Repositories\Contracts\IMessageRepository;
+use Chat\Views\Contracts\IOutputFormat;
 
+/**
+ * Class MessageController
+ * @package Chat\Controllers
+ */
 class MessageController
 {
-    public function add($userId, $message)
-    {
-        $newMessage = new Message();
-        $newMessage->user_id = $userId;
-        $newMessage->message = $message;
-        $newMessage->save();
+    /**
+     * @var IOutputFormat
+     */
+    protected $format;
+    /**
+     * @var IMessageRepository
+     */
+    protected $message;
 
-        return $newMessage;
+    /**
+     * MessageController constructor.
+     * @param IOutputFormat $format
+     * @param IMessageRepository $message
+     */
+    function __construct(IOutputFormat $format, IMessageRepository $message)
+    {
+        $this->format = $format;
+        $this->message = $message;
     }
 
+    /**
+     * @param $userId
+     * @param $text
+     * @param $targetUser
+     * @return mixed
+     */
+    public function add($userId, $text, $targetUser)
+    {
+        $response = $this->message->add($userId, $text, $targetUser);
+        return $this->format->view($response);
+    }
+
+    /**
+     * @param $userId
+     * @return mixed
+     */
     public function get($userId)
     {
-        $messages = Message::where('user_id', $userId)
-            ->where("is_read", 0)
-            ->orderBy("id", "DESC")
-            ->get();
+        $messages = $this->message->getUnread($userId);
+        $this->message->markAsRead($userId, $messages->pluck('id')->toArray());
 
-        Message::where('user_id', $userId)
-            ->where('id', $messages->pluck('id')->toArray())
-            ->update(['is_read' => 1]);
-
-        return $messages;
+        return $this->format->view($messages);
     }
 }

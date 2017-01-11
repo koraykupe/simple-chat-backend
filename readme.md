@@ -45,6 +45,7 @@ It updates the messages as read and returns them
 
 #TODO
 - Ordering options for get user messages API
+- Exceptions and error codes
 - Update a message
 - Delete a message
 - Add more output types (HTML, XML, etc)

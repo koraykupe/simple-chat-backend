@@ -13,16 +13,17 @@
 
 use Illuminate\Http\Request;
 
-// Add chat message
+// Send chat message to another user
 $app->post('user/messages', function (Request $request) {
 
     $this->validate($request, [
         'message' => 'required|string',
         'userId' => 'required|integer|exists:users,id',
+        'targetUserId' => 'required|integer|different:userId|exists:users,id'
     ]);
 
-    $message = new \Chat\Controllers\MessageController();
-    return $message->add($request->input('userId'), $request->input('message'));
+    $message = new \Chat\Controllers\MessageController(new \Chat\Views\JsonOutputFormat(), new \Chat\Repositories\EloquentMessageRepository());
+    return $message->add($request->input('userId'), $request->input('message'), $request->input('targetUserId'));
 });
 
 // Get chat messages for a user
@@ -32,6 +33,6 @@ $app->get('user/messages', function (Request $request) {
         'userId' => 'required|integer|exists:users,id',
     ]);
 
-    $chat = new \Chat\Controllers\MessageController();
+    $chat = new \Chat\Controllers\MessageController(new \Chat\Views\JsonOutputFormat(), new \Chat\Repositories\EloquentMessageRepository());
     return $chat->get($request->input('userId'));
 });

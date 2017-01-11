@@ -6,7 +6,7 @@
  * Time: 21:46
  */
 
-namespace Chat\Contracts;
+namespace Chat\Views\Contracts;
 
 
 interface IOutputFormat
