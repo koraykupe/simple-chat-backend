@@ -10,9 +10,17 @@ namespace Chat\Views;
 
 use Chat\Views\Contracts\IOutputFormat;
 
+/**
+ * Class JsonOutputFormat
+ * @package Chat\Views
+ */
 class JsonOutputFormat implements IOutputFormat
 {
 
+    /**
+     * @param $data
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function view($data)
     {
         return response()->json($data);

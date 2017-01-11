@@ -9,7 +9,15 @@
 namespace Chat\Views\Contracts;
 
 
+/**
+ * Interface IOutputFormat
+ * @package Chat\Views\Contracts
+ */
 interface IOutputFormat
 {
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function view($data);
 }
