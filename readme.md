@@ -16,21 +16,23 @@
 
 **Get unread messages of a user:**
 
-GET `yourdomain/user/messages`
+- GET `yourdomain/user/messages`
 
-Send a valid `user_id (int)`
+- Send a valid `user_id (int)`
 
-It returns messages with user data
+- It returns messages with user data
 
+- Example return message: `[{"id":63,"user_id":"2","message":"Demo message","created_at":"2017-01-11 13:45:03","updated_at":"2017-01-11 13:45:03","is_read":"0","target_user_id":"3","user":{"id":2,"name":"Koray","created_at":2017-01-01,"updated_at":null},"target_user":{"id":3,"name":"John","created_at":2017-01-01,"updated_at":null}}]`
 
 **Add a message to a user:**
 
-POST `yourdomain/user/messages`
+- POST `yourdomain/user/messages`
 
-Send a valid `user_id (int)`, `target_user_id (int)` and `message (string)`
+- Send a valid `user_id (int)`, `target_user_id (int)` and `message (string)`
 
-It updates the messages as read and returns them
+- It updates the messages as read and returns them
 
+- Example return message: `{"user_id":2,"message":"Test","target_user_id":3,"updated_at":"2017-01-11 13:53:18","created_at":"2017-01-11 13:53:18","id":64}`
 
 # Installation
 - composer install
