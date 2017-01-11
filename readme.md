@@ -1,12 +1,16 @@
 # Simple PHP Chat Backend
-This project was developed for bunq interview. I used Lumen micro-framework.
+- This project was developed for bunq interview. I used Lumen micro-framework.
 
-All API codes are under app/Chat folder.
-Output format is JSON but i created an interface to add more types in future.
-I used Eloquent ORM of the framework.
-No any authentication system, so everybody can add a message using user ids.
+- All API codes are under app/Chat folder.
+- Output format is JSON but i created an interface to add more types in future.
+- I used Eloquent ORM of the framework but used Repository pattern to make easy to change it.
+- No any authentication system, so everybody can add a message using user ids.
+- There are some dummy data in SQLite db.
+- I wrote migrations to create DB tables but you need to add some user manually. You can use DB Browser for SQLite software.
 
-Routing codes are in routes/web.php file.
+- You can create an empty file and use `php artisan migrate` command to generate the tables.
+- Routing codes are in routes/web.php file.
+- There are some unit tests on tests/MessageTest.php file
 
 #Usage
 
@@ -16,14 +20,14 @@ GET `yourdomain/user/messages`
 
 Send a valid `user_id (int)`
 
-It returns messages
+It returns messages with user data
 
 
 **Add a message to a user:**
 
 POST `yourdomain/user/messages`
 
-Send a valid `user_id (int)` and `message (string)`
+Send a valid `user_id (int)`, `target_user_id (int)` and `message (string)`
 
 It updates the messages as read and returns them
 
