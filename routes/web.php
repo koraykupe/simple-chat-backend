@@ -21,8 +21,8 @@ $app->post('user/messages', function (Request $request) {
         'userId' => 'required|integer|exists:users,id',
     ]);
 
-    $message = new \Chat\Message();
-    return $message->add(new \Chat\OutputFormats\JsonOutputFormat(), $request->input('userId'), $request->input('message'));
+    $message = new \Chat\Controllers\MessageController();
+    return $message->add($request->input('userId'), $request->input('message'));
 });
 
 // Get chat messages for a user
@@ -32,6 +32,6 @@ $app->get('user/messages', function (Request $request) {
         'userId' => 'required|integer|exists:users,id',
     ]);
 
-    $chat = new \Chat\Message();
-    return $chat->get(new \Chat\OutputFormats\JsonOutputFormat(), $request->input('userId'));
+    $chat = new \Chat\Controllers\MessageController();
+    return $chat->get($request->input('userId'));
 });

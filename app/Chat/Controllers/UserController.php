@@ -6,10 +6,10 @@
  * Time: 21:13
  */
 
-namespace Chat;
+namespace Chat\Controllers;
 
 
-class User
+class UserController
 {
     private $id;
     private $name;

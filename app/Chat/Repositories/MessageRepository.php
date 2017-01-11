@@ -7,14 +7,16 @@
  */
 
 namespace app\Chat\Repositories;
-use Chat\User;
+use Chat\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class MessageRepository
 {
     public function get(User $id)
     {
-        return DB::table('messages')->where('user_id', $id)->get();
+        $messages = DB::table('messages')->where('user_id', $id)->get();
+        // Mark as read
+        DB::table('messages')->update();
     }
 
 }
