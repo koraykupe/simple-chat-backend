@@ -12,23 +12,14 @@
 - Routing codes are in routes/web.php file.
 - There are some unit tests on tests/MessageTest.php file
 
-#Folder Structure
+#General Folder Structure
 
 ├───app<br />
 │   ├───Chat<br />
 │   │   └───Controllers<br />
-│   │       └───MessageController<br />
 │   │   └───Models<br />
-│   │       └───Message<br />
-│   │       └───User<br />
 │   │   └───Repositories<br />
-│   │       └───Contracts<br />
-│   │           └───IMessageRepository<br />
-│   │       └───EloquentMessageRepository<br />
 │   │   └───Views<br />
-│   │       └───Contracts<br />
-│   │           └───IOutputFormat<br />
-│   │       └───JsonOutputFormat<br />
 ├───database<br />
 │   ├───migrations<br />
 ├───routes<br />
