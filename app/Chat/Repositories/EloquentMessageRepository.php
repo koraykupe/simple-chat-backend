@@ -25,7 +25,7 @@ class EloquentMessageRepository implements IMessageRepository
      * @param int $targetUser
      * @return Message
      */
-    public function add(int $userId, $text, int$targetUser)
+    public function add(int $userId, $text, int $targetUser)
     {
         $newMessage = new Message();
         $newMessage->user_id = $userId;
@@ -52,13 +52,15 @@ class EloquentMessageRepository implements IMessageRepository
         return $messages;
     }
 
+
     /**
      * @param int $userId
      * @param array $messageIds
+     * @return mixed
      */
     public function markAsRead(int $userId, array $messageIds)
     {
-        Message::where('target_user_id', $userId)
+        return Message::where('target_user_id', $userId)
             ->whereIn('id', $messageIds)
             ->update(['is_read' => 1]);
     }
