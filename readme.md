@@ -7,10 +7,11 @@
 - No any authentication system, so everybody can add a message using user ids.
 - There are some dummy data in SQLite db.
 - I wrote migrations to create DB tables but you need to add some user manually. You can use DB Browser for SQLite software.
-
 - You can create an empty file and use `php artisan migrate` command to generate the tables.
 - Routing codes are in routes/web.php file.
 - There are some unit tests on tests/MessageTest.php file
+- Created a Service Provider for Chat and added it to Laravel's `bootstrap/app` file to register it
+- Used Laravel's validation facade to validate input datas and improve security
 
 #General Folder Structure
 
@@ -20,6 +21,8 @@
 │   │   └───Models<br />
 │   │   └───Repositories<br />
 │   │   └───Views<br />
+│   ├───Http<br />
+│   │   └───Controllers<br />
 ├───database<br />
 │   ├───migrations<br />
 ├───routes<br />
@@ -69,6 +72,5 @@
 - Delete a message
 - Add database seeds
 - Mocking for tests 
-- Improve the routing file
 - Add more output types (HTML, XML, etc)
 - Authentication
