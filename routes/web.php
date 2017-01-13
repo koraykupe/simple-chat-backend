@@ -10,29 +10,14 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-use Illuminate\Http\Request;
-
-// Send chat message to another user
-$app->post('user/messages', function (Request $request) {
-
-    $this->validate($request, [
-        'message' => 'required|string',
-        'userId' => 'required|integer|exists:users,id',
-        'targetUserId' => 'required|integer|different:userId|exists:users,id'
+$app->group(['namespace' => 'Chat'], function() use ($app) {
+    // Get chat messages for a user
+    $app->get('user/messages', [
+        'uses' => 'MessageController@get'
     ]);
 
-    $message = new \Chat\Controllers\MessageController(new \Chat\Views\JsonOutputFormat(), new \Chat\Repositories\EloquentMessageRepository());
-    return $message->add($request->input('userId'), $request->input('message'), $request->input('targetUserId'));
-});
-
-// Get chat messages for a user
-$app->get('user/messages', function (Request $request) {
-
-    $this->validate($request, [
-        'userId' => 'required|integer|exists:users,id',
+    // Send chat message to another user
+    $app->post('user/messages', [
+        'uses' => 'MessageController@add'
     ]);
-
-    $chat = new \Chat\Controllers\MessageController(new \Chat\Views\JsonOutputFormat(), new \Chat\Repositories\EloquentMessageRepository());
-    return $chat->get($request->input('userId'));
 });
