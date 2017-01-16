@@ -1,5 +1,5 @@
 # Simple PHP Chat Backend
-- This project was developed for bunq interview. I used Lumen micro-framework.
+- I used Lumen micro-framework.
 
 - All API codes are under app/Chat folder.
 - Output format is JSON but i created an interface to add more types in future.
