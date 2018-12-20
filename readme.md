@@ -1,5 +1,5 @@
 # Simple PHP Chat Backend
-- I used Lumen micro-framework.
+- Lumen micro-framework is used for this project.
 
 - All API codes are under app/Chat folder.
 - Output format is JSON but i created an interface to add more types in future.
@@ -28,7 +28,7 @@
 ├───routes<br />
 ├───tests<br />
 
-#Usage
+# Usage
 
 **Get unread messages of a user:**
 
@@ -59,13 +59,13 @@
 - Set DB_DATABASE AS /YOUR-FULL-PATH/simple-chat-backend/database/db.sqlite
 - Change YOUR-FULL-PATH with your installation path
 
-#REQUIREMENTS
+# REQUIREMENTS
 - PHP >= 7.*
 - OpenSSL PHP Extension
 - PDO PHP Extension
 - Mbstring PHP Extension
 
-#TODO
+# TODO
 - Ordering options for get user messages API
 - Exceptions and error codes
 - Update a message
